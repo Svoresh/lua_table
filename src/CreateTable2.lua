@@ -3,15 +3,28 @@ QTable ={}
 QTable.__index = QTable
 
 -- Функция инициализации таблицы
-function QTable.new(table)
+function QTable.new(table, head, body)
     local t_id = AllocTable()
     if t_id ~= nil then
-	setmetatable(table, QTable)
+	--setmetatable(table, QTable)
 	table.t_id=t_id
-	table.name = "Окно с таблицей"
+	table.name = "Picachoooo"
 	table.caption = ""
 	table.created = false
 	table.curr_col=0
+	table.head={
+    [1]= "Col1",
+    [2]= "Col2",
+    [3]= "Col3",
+    [4]= "Col4",
+    [5]= "Col5",
+    [6]= "Col6",
+    [7]= "Col7",
+    [8]= "Col8",
+    [9]= "Col9",
+    [10]= "Col10",
+}
+	table.body=body
 	return table
     else
         return nil
@@ -19,15 +32,19 @@ function QTable.new(table)
 end
 
 -- Функция инициализации таблицы
-function InitTable()
+function InitTable(table)
     tableId = table.t_id
 
-    for i=0, ipairs(table), 1 do
-        AddColumn(tableId, i, table.head[i], true,QTABLE_STRING_TYPE,10)
+    for key, val in pairs(table.head) do
+        AddColumn(tableId, key, val, true,QTABLE_STRING_TYPE,10)
     end;
 
 
+--for key, val in pairs(table.head) do
 
+   --message("key == "..key.."; val == "..val)
+
+--end
     -- Подписываемся на события
 --     SetTableNotificationCallback(tt, OnTableEvent)
 
